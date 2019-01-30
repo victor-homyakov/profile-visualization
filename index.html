@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Профилирование JS</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="shower/themes/ribbon/styles/styles.css">
+    <style>
+        .shower {
+            --slide-ratio: calc(16 / 9);
+        }
+
+        .slide h2 {
+            font-size: 40px;
+        }
+    </style>
+</head>
+<body class="shower list">
+
+<header class="caption">
+    <h1>
+        Профилирование JS:<br>
+        увидеть самое важное и не утонуть в море чисел
+    </h1>
+    <p>Виктор Хомяков, Яндекс</p>
+</header>
+
+<section class="slide">
+    <h2>
+        Профилирование JS:<br>
+        увидеть самое важное
+        и не утонуть в море чисел
+    </h2>
+    <p>Виктор Хомяков, Яндекс</p>
+</section>
+
+<!-- вступление -->
+<!-- почему именно я рассказываю именно об этой теме и какой у меня опыт в данной области -->
+<section class="slide">
+    <h2>О себе</h2>
+    <p>
+        Я профессионально занимаюсь анализом и улучшением производительности страницы поиска в Яндексе
+        (Search Engine Result Page, он же SERP или просто серп).
+    </p>
+    <p>
+        (видео сравнения загрузки SERP Yandex vs Google?)<br>
+        (график сравнения скорости загрузки с прошлым годом для иллюстрации прогресса?)
+    </p>
+</section>
+
+<!-- почему аудитории важно послушать мой доклад -->
+<section class="slide">
+    <h2>Профилирование: высокий порог входа</h2>
+    <p>
+        В область анализа производительности порог входа выше, чем в просто написание работающего кода.
+        Запустить профайлер в нужное время и в нужном месте - проблема.
+        Разобраться в полученных результатах - проблема намного сложнее.
+    </p>
+</section>
+
+<section class="slide">
+    <h2></h2>
+    <p>
+        Анализ чисел - это тяжело и медленно
+        (табличка чисел из https://stat.yandex-team.ru/-/CBR1ARVpgA или из профайлера)
+    </p>
+</section>
+
+<section class="slide">
+    <h2></h2>
+    <p>
+        Анализ изображения - это быстро, мозг человека хорошо умеет распознавать паттерны, тренды и "особые
+        места"
+        (график из https://stat.yandex-team.ru/-/CBR1ARVpgA или flame-chart)
+    </p>
+</section>
+
+<!-- какую пользу получит слушатель от моего выступления -->
+<section class="slide">
+    <h2>Я хочу поделиться опытом</h2>
+    <ul>
+        <li class="next">вы узнаете про более удобные способы анализа вместо просмотра моря чисел</li>
+        <li class="next">вам станет проще и приятнее профилировать и ускорять свой код</li>
+    </ul>
+</section>
+
+<!-- основная часть -->
+
+<!-- React на вкладке Performance -->
+<section class="slide">
+    <h2 class="shout shrink">1</h2>
+</section>
+
+<section class="slide">
+    <h2>
+        Профилирование
+        <del>React</del>
+        распространённого фреймворка
+    </h2>
+    <p>
+        React на серпе Яндекса:
+        https://yandex.ru/search/?text=%D0%B3%D0%B8%D1%84%D0%BA%D0%B8%20%D1%81%D0%B0%D0%BB%D1%8E%D1%82%D1%8B%20%D1%84%D0%B5%D0%B9%D0%B5%D1%80%D0%B2%D0%B5%D1%80%D0%BA%D0%B8&noredirect=1&lr=213
+    </p>
+</section>
+
+<section class="slide">
+    <h2></h2>
+    <p>
+        (добавить скриншот вкладка Performance)
+    </p>
+</section>
+
+<section class="slide">
+    <h2>
+        Профилирование
+        <del>React</del>
+        распространённого фреймворка
+    </h2>
+    <ul>
+        <li>Development-сборка React</li>
+        <li>
+            <a href="https://reactjs.org/docs/optimizing-performance.html#profiling-components-with-the-chrome-performance-tab">
+                Статья на reactjs.org о профилировании компонентов React в Chrome
+            </a>
+        </li>
+        <li>
+            <a href="https://github.com/facebook/react/blob/4a635785f5cc40bde901ada6090904fdc8cc120d/packages/react-reconciler/src/ReactDebugFiberPerf.js#L80-L101">ReactDebugFiberPerf.js</a>
+            (собирается в react-dom.development.js)
+        </li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2></h2>
+    <p>
+        (добавить скриншот вкладка Performance, development-сборки React с user timings)
+    </p>
+</section>
+
+<!-- Свои таймлайны на вкладке Performance -->
+<section class="slide">
+    <h2 class="shout shrink">2</h2>
+</section>
+
+<section class="slide">
+    <h2>Хочу такое же в свой уютненький проектик!</h2>
+    <ul>
+        <li class="next">
+            <pre><code>console.timeStamp(label);</code></pre>
+        </li>
+        <li class="next">
+            <pre><code>console.time(label); console.timeEnd(label)</code></pre>
+        </li>
+        <li class="next">
+            <pre><code>performance.mark(markName);</code></pre>
+        </li>
+        <li class="next">
+            <pre><code>performance.measure(label, markName);</code></pre>
+        </li>
+        <li class="next">
+            <a href="https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API">
+                Статья на MDN про User Timing API
+            </a>
+        </li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2></h2>
+    <p>
+        (добавить скриншоты с console.* и performance.*)
+    </p>
+</section>
+
+<section class="slide">
+    <h2>Несколько особенностей</h2>
+    <ul>
+        <li class="next">console.* заодно пишет в консоль - это может замедлить ваш код</li>
+        <li class="next">
+            performance.* заодно пишет в performance entries - надо чистить, чтобы он не съел всю память
+            <pre><code>performance.clearMarks(markName);
+performance.clearMeasures(label);</code></pre>
+        </li>
+    </ul>
+</section>
+
+<!-- вкладка Profiler -->
+<section class="slide">
+    <h2 class="shout shrink">3</h2>
+</section>
+
+<section class="slide">
+    <h2>Node.js Profiler</h2>
+    <ul>
+        <li>в инспекторе для Node нет вкладки Performance</li>
+        <li>много текста и чисел - опять неинтересно (надо скриншот)</li>
+        <li>JS flame chart - уже лучше (надо скриншот)</li>
+    </ul>
+</section>
+
+<!-- профилирование раздельных участков кода -->
+<section class="slide">
+    <h2 class="shout shrink">4</h2>
+</section>
+
+<section class="slide">
+    <h2>Если надо изучить отдельный участок кода</h2>
+    <p>Например, работу отдельного метода, при этом остальной код "мешает" и "шумит"</p>
+    <ol>
+        <li class="next"><code>console.profile(); /*код*/ console.profileEnd();</code></li>
+        <li class="next">экспорт профайлов (сохранение JSON на диск)</li>
+        <li class="next">
+            <a href="https://github.com/victor-homyakov/merge-cpuprofiles">github.com/victor-homyakov/merge-cpuprofiles</a>
+        </li>
+        <li class="next">импорт получившегося одного профайла</li>
+        <li class="next">визуализация (TODO надо скриншоты по шагам)</li>
+        <li class="next">
+            <a href="https://chromedevtools.github.io/devtools-protocol/1-2/Profiler#type-Profile">описание формата</a>,
+            <a href="https://chromium.googlesource.com/v8/v8/+/master/src/inspector/js_protocol.json#1421">исходники</a>
+        </li>
+    </ol>
+</section>
+
+<!-- custom visualization -->
+<section class="slide">
+    <h2 class="shout shrink">5</h2>
+</section>
+
+<section class="slide">
+    <h2>Хочу свои таймлайны</h2>
+    <ol>
+        <li class="next">
+            Инструментируем код - оборачиваем в замеры времени
+            Node: <code>process.hrtime()</code>
+            Chrome: <code>performance.now()</code>
+        </li>
+        <li class="next">Собираем данные и пишем на диск</li>
+        <li class="next">В Google Charts рисуем Timeline</li>
+        <li class="next">Выложить github.yandex-team.ru/v-homyakov/blocks-priv-timeline на GitHub?</li>
+    </ol>
+</section>
+
+<!-- custom visualization, part 2 -->
+<section class="slide">
+    <h2 class="shout shrink">6</h2>
+</section>
+
+<section class="slide">
+    <h2>Хочу свои таймлайны, не хочу писать код</h2>
+    <p>
+        chrome://tracing (ex about:tracing) - можно загрузить свой JSON в правильном формате<br>
+
+        https://www.chromium.org/developers/how-tos/trace-event-profiling-tool/trace-event-reading<br>
+
+        https://www.html5rocks.com/en/tutorials/games/abouttracing/<br>
+
+        добавить скриншоты
+    </p>
+</section>
+
+<section class="slide">
+    <h2>Полезные ссылки</h2>
+    <ul>
+        <li>https://developers.google.com/web/tools/chrome-devtools/ — документация по Chrome DevTools</li>
+        <li>https://umaar.com/dev-tips — полезные советы по DevTools</li>
+        <li>надо ли ссылка на console API?</li>
+        <li>Chrome DevTools Protocol documentation:
+            https://chromedevtools.github.io/devtools-protocol/1-2/Profiler#type-Profile
+        </li>
+        <li>Protocol sources: https://chromium.googlesource.com/v8/v8/+/master/src/inspector/js_protocol.json#1421</li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>Заключение</h2>
+    <ul>
+        <li class="next">Анализировать картинки легче, чем числа</li>
+        <li class="next">
+            В стандартных вкладках Performance и Profiler инспектора для Chrome и Node можно визуализировать
+            результаты профилирования с учётом специфики любого фреймворка
+        </li>
+        <li class="next">
+            Если этого недостаточно - есть описание форматов, экспорт JSON и импорт в любой доступный универсальный
+            инструмент наподобие Google Charts и chrome://tracing
+        </li>
+    </ul>
+</section>
+
+<!--
+<section class="slide" id="picture">
+    <h2>Pictures</h2>
+    <figure>
+        <img class="cover" src="pictures/picture.jpg" alt="Orange typewriter on a wooden table close-up">
+        <figcaption class="copyright right white">
+            <a href="http://fiftyfootshadows.net/">© John Carey</a>
+        </figcaption>
+    </figure>
+    <style>
+        #picture h2 {
+            color: white;
+        }
+    </style>
+</section>
+-->
+
+<div class="progress"></div>
+
+<script src="shower/shower.min.js"></script>
+</body>
+</html>
