@@ -44,8 +44,21 @@
     </p>
     <p>
         (видео сравнения загрузки SERP Yandex vs Google?)<br>
-        (график сравнения скорости загрузки с прошлым годом для иллюстрации прогресса?)
+        (
+        график сравнения скорости загрузки с прошлым годом для иллюстрации прогресса?
+        Графики Год к Году
+        Touch:JS https://stat.yandex-team.ru/-/CBRpaFCN-C
+        Desktop:JS https://stat.yandex-team.ru/-/CBRpaRUb2A
+        Touch:Отрисовка https://stat.yandex-team.ru/-/CBRpa0bp9B
+        Desktop:Отрисовка https://stat.yandex-team.ru/-/CBRpaCd-LB
+        )
     </p>
+</section>
+
+<section class="slide">
+    <figure>
+        <img src="pictures/serp-sample.jpg" alt="SERP sample" class="cover">
+    </figure>
 </section>
 
 <!-- почему аудитории важно послушать мой доклад -->
@@ -53,34 +66,59 @@
     <h2>Профилирование: высокий порог входа</h2>
     <p>
         В область анализа производительности порог входа выше, чем в просто написание работающего кода.
-        Запустить профайлер в нужное время и в нужном месте - проблема.
-        Разобраться в полученных результатах - проблема намного сложнее.
+        Запустить профайлер в нужное время и в нужном месте &mdash; проблема.
+        Разобраться в полученных результатах &mdash; проблема намного сложнее.
+    </p>
+</section>
+
+<section class="slide">
+    <figure>
+        <img src="pictures/js-profiler-client-tree.png" alt="JS Profiler Tree" class="cover">
+    </figure>
+</section>
+
+<section class="slide">
+    <h2></h2>
+    <p>
+        Анализ чисел &mdash; это тяжело и медленно
     </p>
 </section>
 
 <section class="slide">
     <h2></h2>
     <p>
-        Анализ чисел - это тяжело и медленно
-        (табличка чисел из https://stat.yandex-team.ru/-/CBR1ARVpgA или из профайлера)
+        Анализ изображения &mdash; это быстро, мозг человека хорошо умеет распознавать паттерны, тренды и "особые
+        места".
     </p>
 </section>
 
 <section class="slide">
-    <h2></h2>
-    <p>
-        Анализ изображения - это быстро, мозг человека хорошо умеет распознавать паттерны, тренды и "особые
-        места"
-        (график из https://stat.yandex-team.ru/-/CBR1ARVpgA или flame-chart)
-    </p>
+    <figure>
+        <img src="pictures/js-profiler-client-flame-chart.png" alt="JS Profiler Flame Chart" class="cover">
+    </figure>
 </section>
+
+<!--
+<section class="slide">
+    <figure>
+        <img src="pictures/average-sample-table.png" alt="Table" class="cover">
+    </figure>
+</section>
+
+<section class="slide">
+    <figure>
+        <img src="pictures/average-sample-chart.png" alt="Chart" class="cover">
+    </figure>
+</section>
+-->
 
 <!-- какую пользу получит слушатель от моего выступления -->
 <section class="slide">
-    <h2>Я хочу поделиться опытом</h2>
+    <h2>О чём я хочу рассказать</h2>
     <ul>
-        <li class="next">вы узнаете про более удобные способы анализа вместо просмотра моря чисел</li>
-        <li class="next">вам станет проще и приятнее профилировать и ускорять свой код</li>
+        <li class="next">есть более удобные способы анализа вместо просмотра моря чисел</li>
+        <li class="next">результаты профилирования почти всегда можно представить визуально</li>
+        <li class="next">как проще и приятнее профилировать и ускорять свой код</li>
     </ul>
 </section>
 
@@ -274,14 +312,17 @@ performance.clearMeasures(label);</code></pre>
 <section class="slide">
     <h2>Заключение</h2>
     <ul>
-        <li class="next">Анализировать картинки легче, чем числа</li>
+        <li class="next">
+            Анализировать картинки легче, чем числа
+        </li>
         <li class="next">
             В стандартных вкладках Performance и Profiler инспектора для Chrome и Node можно визуализировать
             результаты профилирования с учётом специфики любого фреймворка
         </li>
         <li class="next">
-            Если этого недостаточно - есть описание форматов, экспорт JSON и импорт в любой доступный универсальный
-            инструмент наподобие Google Charts и chrome://tracing
+            Если этого недостаточно - есть экспорт JSON, описание форматов, можно написать свои
+            преобразования и конвертеры и делать импорт в любой доступный универсальный инструмент
+            наподобие Google Charts и chrome://tracing
         </li>
     </ul>
 </section>
