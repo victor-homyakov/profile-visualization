@@ -78,14 +78,14 @@
 </section>
 
 <section class="slide">
-    <h2></h2>
+    <!--<h2></h2>-->
     <p>
         Анализ чисел &mdash; это тяжело и медленно
     </p>
 </section>
 
 <section class="slide">
-    <h2></h2>
+    <!--<h2></h2>-->
     <p>
         Анализ изображения &mdash; это быстро, мозг человека хорошо умеет распознавать паттерны, тренды и "особые
         места".
@@ -116,9 +116,9 @@
 <section class="slide">
     <h2>О чём я хочу рассказать</h2>
     <ul>
-        <li class="next">есть более удобные способы анализа вместо просмотра моря чисел</li>
+        <li>анализировать изображение удобнее, чем просматривать море чисел</li>
+        <li class="next">есть способы облегчить задачу профилирования и ускорения кода</li>
         <li class="next">результаты профилирования почти всегда можно представить визуально</li>
-        <li class="next">как проще и приятнее профилировать и ускорять свой код</li>
     </ul>
 </section>
 
@@ -126,15 +126,11 @@
 
 <!-- React на вкладке Performance -->
 <section class="slide">
-    <h2 class="shout shrink">1</h2>
+    <h2 class="shout shrink">Если у меня<br>React</h2>
 </section>
 
 <section class="slide">
-    <h2>
-        Профилирование
-        <del>React</del>
-        распространённого фреймворка
-    </h2>
+    <h2>Профилирование React</h2>
     <p>
         React на серпе Яндекса:
         https://yandex.ru/search/?text=%D0%B3%D0%B8%D1%84%D0%BA%D0%B8%20%D1%81%D0%B0%D0%BB%D1%8E%D1%82%D1%8B%20%D1%84%D0%B5%D0%B9%D0%B5%D1%80%D0%B2%D0%B5%D1%80%D0%BA%D0%B8&noredirect=1&lr=213
@@ -142,18 +138,14 @@
 </section>
 
 <section class="slide">
-    <h2></h2>
+    <!--<h2></h2>-->
     <p>
         (добавить скриншот вкладка Performance)
     </p>
 </section>
 
 <section class="slide">
-    <h2>
-        Профилирование
-        <del>React</del>
-        распространённого фреймворка
-    </h2>
+    <h2>Профилирование React</h2>
     <ul>
         <li>Development-сборка React</li>
         <li>
@@ -169,42 +161,42 @@
 </section>
 
 <section class="slide">
-    <h2></h2>
+    <!--<h2></h2>-->
     <p>
-        (добавить скриншот вкладка Performance, development-сборки React с user timings)
+        (добавить скриншот вкладки Performance, development-сборки React с user timings)
     </p>
 </section>
 
 <!-- Свои таймлайны на вкладке Performance -->
 <section class="slide">
-    <h2 class="shout shrink">2</h2>
+    <h2 class="shout shrink">Если у меня<br>нет React</h2>
 </section>
 
 <section class="slide">
     <h2>Хочу такое же в свой уютненький проектик!</h2>
     <ul>
-        <li class="next">
-            <pre><code>console.timeStamp(label);</code></pre>
+        <li>
+            <code>console.timeStamp(label);</code>
         </li>
         <li class="next">
-            <pre><code>console.time(label); console.timeEnd(label)</code></pre>
+            <code>console.time(label); console.timeEnd(label)</code>
         </li>
         <li class="next">
-            <pre><code>performance.mark(markName);</code></pre>
+            <code>performance.mark(markName);</code>
         </li>
         <li class="next">
-            <pre><code>performance.measure(label, markName);</code></pre>
+            <code>performance.measure(label, markName);</code>
         </li>
         <li class="next">
             <a href="https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API">
-                Статья на MDN про User Timing API
+                Статья про User Timing API на MDN
             </a>
         </li>
     </ul>
 </section>
 
 <section class="slide">
-    <h2></h2>
+    <!--<h2></h2>-->
     <p>
         (добавить скриншоты с console.* и performance.*)
     </p>
@@ -213,9 +205,9 @@
 <section class="slide">
     <h2>Несколько особенностей</h2>
     <ul>
-        <li class="next">console.* заодно пишет в консоль - это может замедлить ваш код</li>
+        <li><code>console.*</code> заодно пишет в консоль - это может замедлить ваш код</li>
         <li class="next">
-            performance.* заодно пишет в performance entries - надо чистить, чтобы он не съел всю память
+            <code>performance.*</code> заодно пишет в performance entries - надо чистить, чтобы он не съел всю память
             <pre><code>performance.clearMarks(markName);
 performance.clearMeasures(label);</code></pre>
         </li>
@@ -224,95 +216,163 @@ performance.clearMeasures(label);</code></pre>
 
 <!-- вкладка Profiler -->
 <section class="slide">
-    <h2 class="shout shrink">3</h2>
+    <h2 class="shout shrink">
+        Если я
+        <br>
+        <del>в танке</del>
+        в Node
+    </h2>
 </section>
 
 <section class="slide">
     <h2>Node.js Profiler</h2>
     <ul>
-        <li>в инспекторе для Node нет вкладки Performance</li>
-        <li>много текста и чисел - опять неинтересно (надо скриншот)</li>
-        <li>JS flame chart - уже лучше (надо скриншот)</li>
+        <li>в инспекторе для Node нет вкладки Performance, есть только Profiler</li>
+        <li class="next">много текста и чисел - опять неинтересно (TODO надо скриншот)</li>
+        <li class="next">JS flame chart - уже лучше (TODO надо скриншот)</li>
     </ul>
 </section>
 
 <!-- профилирование раздельных участков кода -->
 <section class="slide">
-    <h2 class="shout shrink">4</h2>
+    <h2 class="shout shrink">Изучение отдельного участка кода</h2>
 </section>
 
 <section class="slide">
-    <h2>Если надо изучить отдельный участок кода</h2>
-    <p>Например, работу отдельного метода, при этом остальной код "мешает" и "шумит"</p>
+    <!--<h2></h2>-->
+    <p>
+        Иногда надо изучить конкретный метод, при этом остальной код "шумит"
+    </p>
     <ol>
-        <li class="next"><code>console.profile(); /*код*/ console.profileEnd();</code></li>
-        <li class="next">экспорт профайлов (сохранение JSON на диск)</li>
+        <li>
+            Оборачиваем код в<br>
+            <code>console.profile() ... console.profileEnd()</code>
+        </li>
+        <li class="next">Экспортируем профайлы (сохраняем JSON на диск)</li>
         <li class="next">
+            Мы умеем в JSON
             <a href="https://github.com/victor-homyakov/merge-cpuprofiles">github.com/victor-homyakov/merge-cpuprofiles</a>
         </li>
-        <li class="next">импорт получившегося одного профайла</li>
-        <li class="next">визуализация (TODO надо скриншоты по шагам)</li>
+        <li class="next">Импортируем получившийся объединённый профайл</li>
+        <li class="next">Смотрим, что получилось (TODO надо скриншоты по шагам)</li>
         <li class="next">
-            <a href="https://chromedevtools.github.io/devtools-protocol/1-2/Profiler#type-Profile">описание формата</a>,
-            <a href="https://chromium.googlesource.com/v8/v8/+/master/src/inspector/js_protocol.json#1421">исходники</a>
+            <a href="https://chromedevtools.github.io/devtools-protocol/1-2/Profiler#type-Profile">Описание формата
+                Profile</a>,
+            <a href="https://chromium.googlesource.com/v8/v8/+/master/src/inspector/js_protocol.json#1421">исходники в
+                V8 Inspector</a>
         </li>
     </ol>
 </section>
 
 <!-- custom visualization -->
 <section class="slide">
-    <h2 class="shout shrink">5</h2>
+    <h2 class="shout shrink">Хочу свои таймлайны</h2>
 </section>
 
 <section class="slide">
     <h2>Хочу свои таймлайны</h2>
     <ol>
-        <li class="next">
-            Инструментируем код - оборачиваем в замеры времени
-            Node: <code>process.hrtime()</code>
-            Chrome: <code>performance.now()</code>
+        <li>
+            Оборачиваем код в замеры времени
+            <ul>
+                <li>Node: <code>process.hrtime()</code></li>
+                <li>Chrome: <code>performance.now()</code></li>
+            </ul>
         </li>
-        <li class="next">Собираем данные и пишем на диск</li>
-        <li class="next">В Google Charts рисуем Timeline</li>
-        <li class="next">Выложить github.yandex-team.ru/v-homyakov/blocks-priv-timeline на GitHub?</li>
+        <li class="next">Собираем данные и сохраняем JSON</li>
+        <li class="next">Рисуем Timeline в Google Charts</li>
     </ol>
+</section>
+
+<section class="slide">
+    <h2>Оборачиваем код в замеры времени в Node</h2>
+    <pre>
+        <code class="comment">// initialOffset - точка отсчёта</code>
+        <code>const initialOffset = process.hrtime(), events = [];</code>
+        <code class="comment">// время, прошедшее с момента initialOffset</code>
+        <code>let start = process.hrtime(initialOffset);</code>
+        <code class="comment">// код</code>
+        <code>let end = process.hrtime(initialOffset);</code>
+        <code>events.push(['имя метода', start, end]);</code>
+    </pre>
+</section>
+
+<section class="slide">
+    <h2>Оборачиваем код в замеры времени в браузере</h2>
+    <pre>
+        <code class="comment">// точка отсчёта - начало навигации</code>
+        <code>let start = performance.now();</code>
+        <code class="comment">// код</code>
+        <code>let end = performance.now();</code>
+        <code>events.push(['имя метода', start, end]);</code>
+    </pre>
+</section>
+
+<section class="slide">
+    <h2>Собираем данные и сохраняем JSON</h2>
+    <pre>
+        <code>fs.writeFileSync(</code>
+        <code>    `timeline-${Date.now()}.json`,</code>
+        <code>    JSON.stringify(events)</code>
+        <code>);</code>
+    </pre>
+</section>
+
+<section class="slide">
+    <h2>Рисуем Timeline в Google Charts</h2>
+    <p>
+        <a href="google-charts-timeline/timeline.html?file=timeline.json">Пример</a>
+    </p>
+    <p>
+        TODO вставить скриншот
+    </p>
 </section>
 
 <!-- custom visualization, part 2 -->
 <section class="slide">
-    <h2 class="shout shrink">6</h2>
+    <h2 class="shout shrink">Хочу таймлайны, не хочу писать&nbsp;код</h2>
 </section>
 
 <section class="slide">
-    <h2>Хочу свои таймлайны, не хочу писать код</h2>
-    <p>
-        chrome://tracing (ex about:tracing) - можно загрузить свой JSON в правильном формате<br>
-
-        https://www.chromium.org/developers/how-tos/trace-event-profiling-tool/trace-event-reading<br>
-
-        https://www.html5rocks.com/en/tutorials/games/abouttracing/<br>
-
-        добавить скриншоты
-    </p>
-</section>
-
-<section class="slide">
-    <h2>Полезные ссылки</h2>
-    <ul>
-        <li>https://developers.google.com/web/tools/chrome-devtools/ — документация по Chrome DevTools</li>
-        <li>https://umaar.com/dev-tips — полезные советы по DevTools</li>
-        <li>надо ли ссылка на console API?</li>
-        <li>Chrome DevTools Protocol documentation:
-            https://chromedevtools.github.io/devtools-protocol/1-2/Profiler#type-Profile
+    <h2>Хочу таймлайны, не хочу писать код</h2>
+    <ol>
+        <li>
+            chrome://tracing (browser://tracing, about:tracing) - можно загрузить свой JSON в правильном формате
         </li>
-        <li>Protocol sources: https://chromium.googlesource.com/v8/v8/+/master/src/inspector/js_protocol.json#1421</li>
-    </ul>
+        <li class="next">
+            https://www.chromium.org/developers/how-tos/trace-event-profiling-tool/trace-event-reading
+        </li>
+        <li class="next">
+            https://www.html5rocks.com/en/tutorials/games/abouttracing/
+        </li>
+        <li class="next">
+            TODO добавить скриншоты
+        </li>
+    </ol>
 </section>
 
 <section class="slide">
-    <h2>Заключение</h2>
+    <h2>Собираем данные в формате Trace Event</h2>
+    <pre>
+        <code>events.push({</code>
+        <code>    pid: 1, tid: 1, ph: 'X', name: 'имя метода',</code>
+        <code>    ts: startMicroseconds, dur: durationMicroseconds,</code>
+        <code>    args: { <span class="comment">// любая детальная информация</span></code>
+        <code>        name: 'имя метода',</code>
+        <code>        ms: durationMicroseconds / 1000</code>
+        <code>    }</code>
+        <code>});</code>
+    </pre>
+</section>
+
+<section class="slide">
+    <h2 class="shout shrink">Заключение</h2>
+</section>
+
+<section class="slide">
+    <!--<h2>Заключение</h2>-->
     <ul>
-        <li class="next">
+        <li>
             Анализировать картинки легче, чем числа
         </li>
         <li class="next">
@@ -324,6 +384,23 @@ performance.clearMeasures(label);</code></pre>
             преобразования и конвертеры и делать импорт в любой доступный универсальный инструмент
             наподобие Google Charts и chrome://tracing
         </li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2 class="shout shrink">Спасибо! Вопросы?</h2>
+</section>
+
+<section class="slide">
+    <h2>P.S. Полезные ссылки</h2>
+    <ul>
+        <li>Документация по Chrome DevTools: https://developers.google.com/web/tools/chrome-devtools/</li>
+        <li>Полезные советы по DevTools: https://umaar.com/dev-tips</li>
+        <li>
+            Описание формата Profile в Chrome DevTools Protocol documentation:
+            https://chromedevtools.github.io/devtools-protocol/1-2/Profiler#type-Profile
+        </li>
+        <li>Protocol sources: https://chromium.googlesource.com/v8/v8/+/master/src/inspector/js_protocol.json#1421</li>
     </ul>
 </section>
 

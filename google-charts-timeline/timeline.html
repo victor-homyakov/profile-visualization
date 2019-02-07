@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Google Charts Timeline</title>
+    <style>
+        div.google-visualization-tooltip {
+            font-family: 'Helvetica Neue', Roboto, 'Segoe UI', Arial, Helvetica, sans-serif;
+            padding: 5px 0 0 5px;
+        }
+    </style>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.10/lodash.min.js"></script>-->
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+        var fileName = 'timeline.json';
+        location.search.substring(1).split('&').forEach(param => {
+            const [key, value] = param.split('=');
+            if (key === 'file') {
+                fileName = value;
+            }
+        });
+
+        var dataPromise = fetch(fileName)
+            .then(r => r.json())
+            .then(entries => entries.map(([n, s, e]) => {
+                var startMilliseconds = s[0] * 1000 + s[1] / 1e6,
+                    endMilliseconds = e[0] * 1000 + e[1] / 1e6;
+
+                return [
+                    'Time',
+                    n,
+                    n + ': ' + (endMilliseconds - startMilliseconds).toFixed(3) + 'ms',
+                    startMilliseconds,
+                    endMilliseconds
+                ];
+            }));
+
+        google.charts.load('current', {'packages': ['timeline']});
+        google.charts.setOnLoadCallback(initChart);
+
+        function initChart() {
+            var container = document.body;
+            var chart = new google.visualization.Timeline(container);
+            var dataTable = new google.visualization.DataTable();
+
+            dataTable.addColumn({type: 'string', id: 'Time'});
+            dataTable.addColumn({type: 'string', id: 'Block'});
+            dataTable.addColumn({type: 'string', role: 'tooltip'});
+            dataTable.addColumn({type: 'number', id: 'Start'}); //type: 'date'|'number'
+            dataTable.addColumn({type: 'number', id: 'End'});
+
+            const height = 1500;
+            var width = 50000;
+            const step = 5000;
+
+            dataPromise.then(data => {
+                dataTable.addRows(data);
+                drawChart(chart, dataTable, width, height);
+
+                document.addEventListener('keypress', e => {
+                    var needsRedraw = false,
+                        needsScroll = false,
+                        newScrollLeft, left, middle, delta;
+
+                    // console.log(e);
+                    switch (e.key) {
+                        case '+':
+                            left = document.documentElement.scrollLeft;
+                            middle = left + document.documentElement.offsetWidth / 2;
+                            delta = e.ctrlKey ? step : width / 10;
+                            newScrollLeft = left + delta * middle / width;
+                            width = width + delta;
+                            needsRedraw = true;
+                            needsScroll = true;
+                            break;
+                        case '-':
+                            left = document.documentElement.scrollLeft;
+                            middle = left + document.documentElement.offsetWidth / 2;
+                            delta = e.ctrlKey ? step : width / 11;
+                            newScrollLeft = left - delta * middle / width;
+                            width = width - delta;
+                            needsRedraw = true;
+                            needsScroll = true;
+                            break;
+                        default:
+                            break;
+                    }
+
+                    if (needsRedraw) {
+                        // redrawChart(chart, dataTable, width, height, newScrollLeft);
+                        drawChart(chart, dataTable, width, height);
+                    }
+
+                    if (needsScroll) {
+                        document.documentElement.scrollLeft = newScrollLeft;
+                    }
+                });
+            });
+        }
+
+        function drawChart(chart, dataTable, width, height, scrollLeft) {
+            chart.draw(dataTable, {
+                height: height,
+                width: width,
+                timeline: {
+                    showRowLabels: false,
+                    singleColor: '#8d8'
+                },
+                tooltip: {
+                    isHtml: true
+                }
+            });
+
+            if (scrollLeft) {
+                document.documentElement.scrollLeft = scrollLeft;
+            }
+        }
+
+        // const redrawChart = _.debounce(drawChart, 200, {leading: true, trailing: true});
+    </script>
+</head>
+<body>
+</body>
+</html>

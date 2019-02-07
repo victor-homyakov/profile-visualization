@@ -61,10 +61,6 @@ console.profile(), console.profileEnd() — для JavaScript Profiler
 
 https://github.com/victor-homyakov/merge-cpuprofiles
 
-##### custom visualization
-
-google charts
-
 ##### chrome://tracing (ex about:tracing)
 
 http://www.chromium.org/developers/how-tos/trace-event-profiling-tool/trace-event-reading
@@ -72,18 +68,6 @@ http://www.chromium.org/developers/how-tos/trace-event-profiling-tool/trace-even
 https://www.html5rocks.com/en/tutorials/games/abouttracing/
 
 ? console.time(), console.timeEnd()
-
-##### ссылки 
-
-https://developers.google.com/web/tools/chrome-devtools/ — документация по Chrome DevTools
-
-https://umaar.com/dev-tips — полезные советы по DevTools
-
-? ссылка на console API
-
-Chrome DevTools Protocol documentation: https://chromedevtools.github.io/devtools-protocol/1-2/Profiler#type-Profile
-
-Protocol sources: https://chromium.googlesource.com/v8/v8/+/master/src/inspector/js_protocol.json#1421
 
 ##### заключение
 
@@ -129,3 +113,7 @@ Protocol sources: https://chromium.googlesource.com/v8/v8/+/master/src/inspector
     и сделать профилирование проще и приятнее.
 - Спикер: Виктор Хомяков, старший разработчик интерфейсов в Яндекс. Работает в команде скорости Поиска.
     Следит за тем, чтобы страница поиска Яндекса быстро открывалась и на новых ноутах, и на старых смартфонах.
+
+
+
+http://localhost:3333/search/?text=%D0%B3%D0%B8%D1%84%D0%BA%D0%B8%20%D1%81%D0%B0%D0%BB%D1%8E%D1%82%D1%8B%20%D1%84%D0%B5%D0%B9%D0%B5%D1%80%D0%B2%D0%B5%D1%80%D0%BA%D0%B8&lr=213
