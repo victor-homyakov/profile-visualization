@@ -21,33 +21,9 @@
 
 ##### React на вкладке Performance
 
-надо скриншот
-
-https://yandex.ru/search/?text=%D0%B3%D0%B8%D1%84%D0%BA%D0%B8%20%D1%81%D0%B0%D0%BB%D1%8E%D1%82%D1%8B%20%D1%84%D0%B5%D0%B9%D0%B5%D1%80%D0%B2%D0%B5%D1%80%D0%BA%D0%B8&noredirect=1&lr=213
-
-Development-сборка React 
-
-react-dom/cjs/react-dom.development.js
-
 https://github.com/facebook/react/blob/4a635785f5cc40bde901ada6090904fdc8cc120d/packages/react-reconciler/src/ReactDebugFiberPerf.js#L80-L101
 
 https://reactjs.org/docs/optimizing-performance.html#profiling-components-with-the-chrome-performance-tab
-
-User Timing API
-https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API
-
-##### Свои таймлайны на вкладке Performance
-
-- console.time(label), console.timeEnd(label)
-- console.timeStamp(label)
-
-performance.mark(markName);
-performance.measure(label, markName);
-// Clear marks immediately to avoid growing buffer.
-performance.clearMarks(markName);
-performance.clearMeasures(label);
-
-https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API
 
 ##### вкладка profiler (deprecated для html, OK для node)
 
@@ -55,17 +31,11 @@ https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API
 
 JS flame chart - уже лучше (надо скриншот)
 
-console.profile(), console.profileEnd() — для JavaScript Profiler
-
 экспорт нескольких профайлов + merge + импорт + визуализация (надо скриншоты по шагам)
 
 https://github.com/victor-homyakov/merge-cpuprofiles
 
 ##### chrome://tracing (ex about:tracing)
-
-http://www.chromium.org/developers/how-tos/trace-event-profiling-tool/trace-event-reading
-
-https://www.html5rocks.com/en/tutorials/games/abouttracing/
 
 ? console.time(), console.timeEnd()
 
@@ -73,7 +43,6 @@ https://www.html5rocks.com/en/tutorials/games/abouttracing/
 
 Чтобы красиво закончить выступление, подведите итоги, кратко повторите ключевые мысли выступления
 и расскажите слушателям, чего вы теперь от них ожидаете, что они должны сделать.
-
 
 01. Цель выступления
 Участники мероприятия должны научиться профилировать свой код.
@@ -95,7 +64,6 @@ https://www.html5rocks.com/en/tutorials/games/abouttracing/
     3. Результаты профилирования можно представить визуально.
 Помните также, что любая презентация состоит из трех частей — вступление, основная часть, заключение.
 По времени они должны распределяться примерно как 20/60/20.
-
 
 
 
