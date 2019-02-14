@@ -14,7 +14,7 @@
             font-size: 40px;
         }
 
-        .fit-size {
+        .big-image {
             max-width: 100%;
             max-height: 100%;
         }
@@ -72,17 +72,14 @@
 </section>
 
 <section class="slide">
-    <!--<h2></h2>-->
     <p>
         Анализ чисел &mdash; это тяжело и медленно
     </p>
 </section>
 
 <section class="slide">
-    <!--<h2></h2>-->
     <p>
-        Анализ изображения &mdash; это быстро, мозг человека хорошо умеет распознавать паттерны, тренды и "особые
-        места".
+        Анализ изображения &mdash; это быстро, мозг человека хорошо умеет распознавать закономерности и "особые места".
     </p>
 </section>
 
@@ -130,7 +127,7 @@
         </a>
     </p>
     <figure>
-        <img src="pictures/serp-react-sample.png" alt="SERP React sample" class="fit-size">
+        <img src="pictures/serp-react-sample.png" alt="SERP React sample" class="big-image">
     </figure>
 </section>
 
@@ -147,24 +144,26 @@
     </p>
 </section>
 
+<!--
 <section class="slide">
     <figure>
         <img src="pictures/serp-react-dev-performance.png" alt="React Dev Performance" class="cover">
     </figure>
 </section>
+-->
 
 <section class="slide">
     <h2>Было</h2>
     <figure>
-        <img src="pictures/serp-react-performance-zoom.png" alt="SERP React Performance zoomed" class="cover"
-            style="margin-top: 40px;">
+        <img src="pictures/serp-react-performance-zoom.png" alt="SERP React Performance zoomed" class="big-image">
     </figure>
 </section>
 
 <section class="slide">
     <h2>Стало</h2>
     <figure>
-        <img src="pictures/serp-react-dev-performance-zoom.png" alt="SERP React Dev Performance zoomed" class="cover">
+        <img src="pictures/serp-react-dev-performance-zoom.png" alt="SERP React Dev Performance zoomed"
+            class="big-image">
     </figure>
 </section>
 
@@ -245,11 +244,23 @@
 
 <section class="slide">
     <h2>Node.js Profiler</h2>
-    <ul>
-        <li>в инспекторе для Node нет вкладки Performance, есть только Profiler</li>
-        <li class="next">много текста и чисел - опять неинтересно (TODO надо скриншот?)</li>
-        <li class="next">JS flame chart - уже лучше (TODO надо скриншот?)</li>
-    </ul>
+    <p>
+        В инспекторе для Node нет вкладки Performance, есть только Profiler
+    </p>
+</section>
+
+<section class="slide">
+    <h2>Много чисел &mdash; опять неинтересно</h2>
+    <figure>
+        <img src="pictures/node-profiler-tree.png" alt="Node.js Profiler Tree" class="big-image">
+    </figure>
+</section>
+
+<section class="slide">
+    <h2>Но есть JS Flame Chart</h2>
+    <figure>
+        <img src="pictures/node-profiler-flame-chart.png" alt="Node.js Profiler Flame Chart" class="big-image">
+    </figure>
 </section>
 
 <!-- профилирование раздельных участков кода -->
@@ -262,7 +273,7 @@
         Иногда надо изучить конкретный метод, при этом остальной код "шумит"
     </p>
     <ol>
-        <li>
+        <li class="next">
             Оборачиваем код в<br>
             <code>console.profile() ... console.profileEnd()</code>
         </li>
@@ -272,11 +283,11 @@
             <a href="https://github.com/victor-homyakov/merge-cpuprofiles">github.com/victor-homyakov/merge-cpuprofiles</a>
         </li>
         <li class="next">Импортируем получившийся объединённый профайл</li>
-        <li class="next">Смотрим, что получилось (TODO надо скриншоты по шагам)</li>
+        <li class="next">Смотрим, что получилось (TODO надо скриншоты?)</li>
         <li class="next">
             <a href="https://chromedevtools.github.io/devtools-protocol/1-2/Profiler#type-Profile">Описание формата
                 Profile</a>,
-            <a href="https://chromium.googlesource.com/v8/v8/+/master/src/inspector/js_protocol.json#1421">исходники в
+            <a href="https://chromium.googlesource.com/v8/v8/+/master/src/inspector/js_protocol.json#1421">исходники
                 V8 Inspector</a>
         </li>
     </ol>
@@ -359,14 +370,14 @@
     <ol>
         <li>Собираем данные в формате Trace Event</li>
         <li class="next">Сохраняем в JSON</li>
-        <li class="next">Открываем в chrome://tracing</li>
+        <li class="next">Открываем в chrome://tracing (browser://tracing, about:tracing)</li>
     </ol>
 </section>
 
 <section class="slide">
     <h2>1. Собираем данные в формате Trace Event</h2>
     <pre>
-        <code>events.push({</code>
+        <code>traceEvents.push({</code>
         <code>    pid: 1, tid: 1, ph: 'X', name: 'имя метода',</code>
         <code>    ts: startMicroseconds, dur: durationMicroseconds,</code>
         <code>    args: { <span class="comment">// любая детальная информация</span></code>
@@ -379,14 +390,31 @@
 
 <section class="slide">
     <h2>2. Сохраняем в JSON</h2>
-    <p>Здесь вопросов возникнуть не должно</p>
+    <pre>
+        <code>fs.writeFileSync(</code>
+        <code>    `trace-${Date.now()}.json`,</code>
+        <code>    JSON.stringify({</code>
+        <code>        traceEvents,</code>
+        <code>        metaInfoCreated: new Date()</code>
+        <code>    })</code>
+        <code>);</code>
+    </pre>
 </section>
 
 <section class="slide">
     <h2>3. Открываем в chrome://tracing</h2>
+</section>
+
+<section class="slide">
+    <figure>
+        <img src="pictures/chrome-tracing-nodejs.png" alt="chrome://tracing" class="cover">
+    </figure>
+</section>
+
+<section class="slide">
     <ul>
         <li>
-            chrome://tracing (browser://tracing, about:tracing) - можно загрузить любой JSON в правильном формате
+            В chrome://tracing можно загрузить любой JSON в правильном формате
         </li>
         <li class="next">
             <a href="https://docs.google.com/document/d/1CvAClvFfyA5R-PhYUmn5OOQtYMH4h6I0nSsKchNAySU/preview">
@@ -407,9 +435,6 @@
             <a href="https://github.com/catapult-project/catapult/tree/master/tracing">
                 Standalone trace viewer
             </a>
-        </li>
-        <li class="next">
-            TODO добавить скриншоты
         </li>
     </ul>
 </section>
@@ -446,23 +471,6 @@
         <li>Документация по Chrome DevTools: https://developers.google.com/web/tools/chrome-devtools/</li>
         <li>Полезные советы по DevTools: https://umaar.com/dev-tips</li>
     </ul>
-</section>
--->
-
-<!--
-<section class="slide" id="picture">
-    <h2>Pictures</h2>
-    <figure>
-        <img class="cover" src="pictures/picture.jpg" alt="Orange typewriter on a wooden table close-up">
-        <figcaption class="copyright right white">
-            <a href="http://fiftyfootshadows.net/">© John Carey</a>
-        </figcaption>
-    </figure>
-    <style>
-        #picture h2 {
-            color: white;
-        }
-    </style>
 </section>
 -->
 
