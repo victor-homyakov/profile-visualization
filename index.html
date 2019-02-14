@@ -14,19 +14,9 @@
             font-size: 40px;
         }
 
-        .fit-size {
+        .big-image {
             max-width: 100%;
             max-height: 100%;
-        }
-
-        .big-image {
-            position: absolute;
-            top: 130px;
-            left: 50%;
-            z-index: -1;
-            transform: translate(-50%);
-            max-width: 100%;
-            max-height: 90%;
         }
     </style>
 </head>
@@ -137,7 +127,7 @@
         </a>
     </p>
     <figure>
-        <img src="pictures/serp-react-sample.png" alt="SERP React sample" class="fit-size">
+        <img src="pictures/serp-react-sample.png" alt="SERP React sample" class="big-image">
     </figure>
 </section>
 
@@ -405,9 +395,18 @@
 
 <section class="slide">
     <h2>3. Открываем в chrome://tracing</h2>
+</section>
+
+<section class="slide">
+    <figure>
+        <img src="pictures/chrome-tracing-nodejs.png" alt="chrome://tracing" class="cover">
+    </figure>
+</section>
+
+<section class="slide">
     <ul>
         <li>
-            chrome://tracing (browser://tracing, about:tracing) - можно загрузить любой JSON в правильном формате
+            В chrome://tracing (browser://tracing, about:tracing) можно загрузить любой JSON в правильном формате
         </li>
         <li class="next">
             <a href="https://docs.google.com/document/d/1CvAClvFfyA5R-PhYUmn5OOQtYMH4h6I0nSsKchNAySU/preview">
@@ -428,9 +427,6 @@
             <a href="https://github.com/catapult-project/catapult/tree/master/tracing">
                 Standalone trace viewer
             </a>
-        </li>
-        <li class="next">
-            TODO добавить скриншоты
         </li>
     </ul>
 </section>
@@ -467,23 +463,6 @@
         <li>Документация по Chrome DevTools: https://developers.google.com/web/tools/chrome-devtools/</li>
         <li>Полезные советы по DevTools: https://umaar.com/dev-tips</li>
     </ul>
-</section>
--->
-
-<!--
-<section class="slide" id="picture">
-    <h2>Pictures</h2>
-    <figure>
-        <img class="cover" src="pictures/picture.jpg" alt="Orange typewriter on a wooden table close-up">
-        <figcaption class="copyright right white">
-            <a href="http://fiftyfootshadows.net/">© John Carey</a>
-        </figcaption>
-    </figure>
-    <style>
-        #picture h2 {
-            color: white;
-        }
-    </style>
 </section>
 -->
 
