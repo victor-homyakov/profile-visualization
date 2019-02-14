@@ -19,21 +19,9 @@
     узнает про удобные способы и инструменты анализа,
     станет чаще профилировать и ускорять свой код
 
-##### React на вкладке Performance
-
-https://github.com/facebook/react/blob/4a635785f5cc40bde901ada6090904fdc8cc120d/packages/react-reconciler/src/ReactDebugFiberPerf.js#L80-L101
-
-https://reactjs.org/docs/optimizing-performance.html#profiling-components-with-the-chrome-performance-tab
-
 ##### вкладка profiler (deprecated для html, OK для node)
 
-много текста и чисел - неинтересно (надо скриншот)
-
-JS flame chart - уже лучше (надо скриншот)
-
-экспорт нескольких профайлов + merge + импорт + визуализация (надо скриншоты по шагам)
-
-https://github.com/victor-homyakov/merge-cpuprofiles
+экспорт нескольких профайлов + merge + импорт + визуализация
 
 ##### chrome://tracing (ex about:tracing)
 

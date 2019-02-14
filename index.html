@@ -18,6 +18,16 @@
             max-width: 100%;
             max-height: 100%;
         }
+
+        .big-image {
+            position: absolute;
+            top: 130px;
+            left: 50%;
+            z-index: -1;
+            transform: translate(-50%);
+            max-width: 100%;
+            max-height: 90%;
+        }
     </style>
 </head>
 <body class="shower list">
@@ -72,17 +82,14 @@
 </section>
 
 <section class="slide">
-    <!--<h2></h2>-->
     <p>
         Анализ чисел &mdash; это тяжело и медленно
     </p>
 </section>
 
 <section class="slide">
-    <!--<h2></h2>-->
     <p>
-        Анализ изображения &mdash; это быстро, мозг человека хорошо умеет распознавать паттерны, тренды и "особые
-        места".
+        Анализ изображения &mdash; это быстро, мозг человека хорошо умеет распознавать закономерности и "особые места".
     </p>
 </section>
 
@@ -147,24 +154,26 @@
     </p>
 </section>
 
+<!--
 <section class="slide">
     <figure>
         <img src="pictures/serp-react-dev-performance.png" alt="React Dev Performance" class="cover">
     </figure>
 </section>
+-->
 
 <section class="slide">
     <h2>Было</h2>
     <figure>
-        <img src="pictures/serp-react-performance-zoom.png" alt="SERP React Performance zoomed" class="cover"
-            style="margin-top: 40px;">
+        <img src="pictures/serp-react-performance-zoom.png" alt="SERP React Performance zoomed" class="big-image">
     </figure>
 </section>
 
 <section class="slide">
     <h2>Стало</h2>
     <figure>
-        <img src="pictures/serp-react-dev-performance-zoom.png" alt="SERP React Dev Performance zoomed" class="cover">
+        <img src="pictures/serp-react-dev-performance-zoom.png" alt="SERP React Dev Performance zoomed"
+            class="big-image">
     </figure>
 </section>
 
@@ -245,11 +254,23 @@
 
 <section class="slide">
     <h2>Node.js Profiler</h2>
-    <ul>
-        <li>в инспекторе для Node нет вкладки Performance, есть только Profiler</li>
-        <li class="next">много текста и чисел - опять неинтересно (TODO надо скриншот?)</li>
-        <li class="next">JS flame chart - уже лучше (TODO надо скриншот?)</li>
-    </ul>
+    <p>
+        В инспекторе для Node нет вкладки Performance, есть только Profiler
+    </p>
+</section>
+
+<section class="slide">
+    <h2>Много чисел &mdash; опять неинтересно</h2>
+    <figure>
+        <img src="pictures/node-profiler-tree.png" alt="Node.js Profiler Tree" class="big-image">
+    </figure>
+</section>
+
+<section class="slide">
+    <h2>Но есть JS Flame Chart</h2>
+    <figure>
+        <img src="pictures/node-profiler-flame-chart.png" alt="Node.js Profiler Flame Chart" class="big-image">
+    </figure>
 </section>
 
 <!-- профилирование раздельных участков кода -->
@@ -262,7 +283,7 @@
         Иногда надо изучить конкретный метод, при этом остальной код "шумит"
     </p>
     <ol>
-        <li>
+        <li class="next">
             Оборачиваем код в<br>
             <code>console.profile() ... console.profileEnd()</code>
         </li>
@@ -272,11 +293,11 @@
             <a href="https://github.com/victor-homyakov/merge-cpuprofiles">github.com/victor-homyakov/merge-cpuprofiles</a>
         </li>
         <li class="next">Импортируем получившийся объединённый профайл</li>
-        <li class="next">Смотрим, что получилось (TODO надо скриншоты по шагам)</li>
+        <li class="next">Смотрим, что получилось (TODO надо скриншоты?)</li>
         <li class="next">
             <a href="https://chromedevtools.github.io/devtools-protocol/1-2/Profiler#type-Profile">Описание формата
                 Profile</a>,
-            <a href="https://chromium.googlesource.com/v8/v8/+/master/src/inspector/js_protocol.json#1421">исходники в
+            <a href="https://chromium.googlesource.com/v8/v8/+/master/src/inspector/js_protocol.json#1421">исходники
                 V8 Inspector</a>
         </li>
     </ol>
