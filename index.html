@@ -370,14 +370,14 @@
     <ol>
         <li>Собираем данные в формате Trace Event</li>
         <li class="next">Сохраняем в JSON</li>
-        <li class="next">Открываем в chrome://tracing</li>
+        <li class="next">Открываем в chrome://tracing (browser://tracing, about:tracing)</li>
     </ol>
 </section>
 
 <section class="slide">
     <h2>1. Собираем данные в формате Trace Event</h2>
     <pre>
-        <code>events.push({</code>
+        <code>traceEvents.push({</code>
         <code>    pid: 1, tid: 1, ph: 'X', name: 'имя метода',</code>
         <code>    ts: startMicroseconds, dur: durationMicroseconds,</code>
         <code>    args: { <span class="comment">// любая детальная информация</span></code>
@@ -390,7 +390,15 @@
 
 <section class="slide">
     <h2>2. Сохраняем в JSON</h2>
-    <p>Здесь вопросов возникнуть не должно</p>
+    <pre>
+        <code>fs.writeFileSync(</code>
+        <code>    `trace-${Date.now()}.json`,</code>
+        <code>    JSON.stringify({</code>
+        <code>        traceEvents,</code>
+        <code>        metaInfoCreated: new Date()</code>
+        <code>    })</code>
+        <code>);</code>
+    </pre>
 </section>
 
 <section class="slide">
@@ -406,7 +414,7 @@
 <section class="slide">
     <ul>
         <li>
-            В chrome://tracing (browser://tracing, about:tracing) можно загрузить любой JSON в правильном формате
+            В chrome://tracing можно загрузить любой JSON в правильном формате
         </li>
         <li class="next">
             <a href="https://docs.google.com/document/d/1CvAClvFfyA5R-PhYUmn5OOQtYMH4h6I0nSsKchNAySU/preview">
