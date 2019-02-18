@@ -8,7 +8,6 @@ const pages = require('gh-pages');
 const sync = require('browser-sync').create();
 
 gulp.task('prepare', () => {
-
     const shower = gulp.src([
             '**',
             '!docs{,/**}',
@@ -47,7 +46,7 @@ gulp.task('prepare', () => {
         })
         .pipe(rename( (path) => {
             path.dirname = 'shower/themes/material/' + path.dirname;
-        }))
+        }));
 
     const ribbon = gulp.src([
             '**', '!package.json'
@@ -66,7 +65,6 @@ gulp.task('prepare', () => {
 
     return merge(shower, core, themes)
         .pipe(gulp.dest('prepared'));
-
 });
 
 gulp.task('clean', () => {
