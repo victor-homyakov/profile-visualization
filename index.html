@@ -20,6 +20,11 @@
             display: inline;
         }
 
+        .slide li table th,
+        .slide li table td {
+            text-indent: 0 !important;
+        }
+
         .slide .columns-2 ol {
             float: left;
             margin-left: 70px;
@@ -39,21 +44,19 @@
             background: none;
         }
 
-        /*
-        .big-image {
-            max-width: 100%;
-            max-height: 100%;
-        }
-        */
-
         .slide.big-image > div {
             bottom: 0;
             overflow: hidden;
         }
 
-        .slide.big-image img {
+        .slide.big-image img,
+        .slide.big-image video {
             max-width: 100%;
             max-height: 100%;
+        }
+
+        pre.margin-30 {
+            margin: 30px 0;
         }
     </style>
 </head>
@@ -290,35 +293,40 @@
     </div>
 </section>
 
-<section class="slide">
+<section class="slide big-image">
     <div>
-        <ul>
-            <li>
-                <code>console.timeStamp(label);</code>
-            </li>
-            <li class="next">
-                <code>console.time(label); console.timeEnd(label);</code>
-            </li>
-            <li class="next">
-                <code>performance.mark(markName);</code>
-            </li>
-            <li class="next">
-                <code>performance.measure(label, markName);</code>
-            </li>
-            <li class="next">
-                <a href="https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API">
-                    Статья про User Timing API на MDN
-                </a>
-            </li>
-        </ul>
+        <pre class="margin-30"><code class="hljs javascript">console.timeStamp('Начало inline JS');</code></pre>
+        <figure>
+            <img src="pictures/performance-console-timestamp-highlighted.png" alt="console.timeStamp">
+        </figure>
     </div>
 </section>
 
-<section class="slide">
+<section class="slide big-image">
     <div>
-        <p>
-            TODO добавить скриншоты с console.* и performance.*
-        </p>
+        <p>На одной шкале с DOMContentLoaded и load</p>
+        <figure>
+            <img src="pictures/performance-dcl-highlighted.png" alt="DOMContentLoaded">
+        </figure>
+    </div>
+</section>
+
+<section class="slide big-image">
+    <div>
+        <pre class="margin-30"><code
+            class="hljs javascript">console.time(label); /* код */ console.timeEnd(label);</code></pre>
+        <figure>
+            <img src="pictures/performance-console-time-highlighted.png" alt="console.time">
+        </figure>
+    </div>
+</section>
+
+<section class="slide big-image">
+    <div>
+        <pre class="margin-30"><code class="hljs javascript">performance.mark(markName); /* код */ performance.measure(label, markName);</code></pre>
+        <figure>
+            <img src="pictures/performance-measure-highlighted.png" alt="performance.measure">
+        </figure>
     </div>
 </section>
 
@@ -327,14 +335,52 @@
         <h2>Несколько особенностей</h2>
         <ul>
             <li>
-                <code>console.*</code> пишет результат в консоль &mdash; это может замедлить ваш код, если консоль
-                открыта TODO пруф - ссылку на доки Google
+                <code>console.timeEnd()</code> пишет результат в консоль &mdash; это может замедлить код:
+
+                <table>
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>консоль закрыта</th>
+                        <th>консоль открыта</th>
+                    </tr>
+                    </thead>
+                    <tr>
+                        <td><code>console.timeStamp</code></td>
+                        <td>2.8 Mops/s 0.35 μs</td>
+                        <td>2.8 Mops/s 0.35 μs</td>
+                    </tr>
+                    <tr>
+                        <td><code>console.time..timeEnd</code></td>
+                        <td>40 Kops/s 25 μs</td>
+                        <td style="background-color: #ff000036">150-200 ops/s 5-7 ms</td>
+                    </tr>
+                </table>
+                <a href="https://jsperf.com/console-timestamp">https://jsperf.com/console-timestamp</a>
             </li>
             <li class="next">
-                <code>performance.*</code> пишет в performance entries &mdash; надо чистить, чтобы он не съел всю
-                память:<br>
+                <code>performance.*</code> пишет в performance entries &mdash; надо чистить,<br>
+                чтобы не ел память:<br>
                 <code>performance.clearMarks(markName);</code>
                 <code>performance.clearMeasures(label);</code>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<section class="slide">
+    <div>
+        <h2>Материалы</h2>
+        <ul>
+            <li>
+                <a href="https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API">
+                    User Timing API
+                </a>
+            </li>
+            <li>
+                <a href="https://developers.google.com/web/tools/chrome-devtools/console/api#time">
+                    Chrome Console API Reference
+                </a>
             </li>
         </ul>
     </div>
@@ -380,46 +426,60 @@
     </div>
 </section>
 
-<!-- профилирование раздельных участков кода -->
+<!-- профилирование участков кода -->
 <section class="slide">
     <div>
         <h2 class="shout shrink">Chrome: изучение участка кода</h2>
     </div>
 </section>
 
+<!--
 <section class="slide">
     <div>
-        TODO разбить на отдельные слайды
         <p>
             Иногда надо собрать статистику о многократном выполнении конкретного метода, при этом остальной код "шумит"
         </p>
-        <ol>
-            <li class="next">
-                Оборачиваем код в<br>
-                <code>console.profile() ... console.profileEnd()</code>
-            </li>
-            <li class="next">
-                Экспортируем профайлы (сохраняем JSON на диск)
-            </li>
-            <li class="next">
-                Мы умеем в JSON
-                <a href="https://github.com/victor-homyakov/merge-cpuprofiles">github.com/victor-homyakov/merge-cpuprofiles</a>
-            </li>
-            <li class="next">
-                Импортируем получившийся объединённый профайл
-            </li>
-            <li class="next">
-                Смотрим, что получилось (TODO надо скриншоты?)
-            </li>
-        </ol>
+    </div>
+</section>
+-->
+
+<section class="slide">
+    <div>
+        <h2>1. Оборачиваем код</h2>
+        <pre>
+<code class="hljs javascript">console.profile();
+// код
+console.profileEnd();</code>
+        </pre>
     </div>
 </section>
 
-<section class="slide">
-    <figure>
-        <img src="pictures/github-merge-cpuprofiles-repo.png" alt="merge-cpuprofiles repository on GitHub"
-            class="cover">
-    </figure>
+<section class="slide big-image">
+    <div>
+        <h2>2. Записываем и сохраняем профайлы</h2>
+        <video src="pictures/cpuprofile-create-and-export-small.mp4" autoplay loop muted style="width: 100%"></video>
+    </div>
+</section>
+
+<section class="slide big-image">
+    <div>
+        <h2>3. Мержим профайлы</h2>
+        <p>
+            <a href="https://github.com/victor-homyakov/merge-cpuprofiles">github.com/victor-homyakov/merge-cpuprofiles</a>
+        </p>
+        <figure>
+            <img src="pictures/github-merge-cpuprofiles-repo.png" alt="merge-cpuprofiles repository on GitHub">
+        </figure>
+    </div>
+</section>
+
+<section class="slide big-image">
+    <div>
+        <h2>4. Анализируем объединённый профайл</h2>
+        <figure>
+            <img src="pictures/cpuprofile-merged.png" alt="Merged profiles">
+        </figure>
+    </div>
 </section>
 
 <section class="slide">
@@ -434,6 +494,11 @@
             <li>
                 <a href="https://chromium.googlesource.com/v8/v8/+/master/src/inspector/js_protocol.json#1421">
                     Исходники V8 Inspector
+                </a>
+            </li>
+            <li>
+                <a href="https://developers.google.com/web/tools/chrome-devtools/console/api#profile">
+                    Chrome Console API Reference
                 </a>
             </li>
         </ul>
@@ -451,7 +516,7 @@
     <div>
         <h2>1a. Оборачиваем код в замеры времени в&nbsp;Node.js</h2>
         <pre>
-<code class="hljs javascript">// initialOffset - точка отсчёта
+<code class="hljs javascript">// точка отсчёта - загрузка модуля
 const initialOffset = process.hrtime(), events = [];
 // время, прошедшее с момента initialOffset
 let start = process.hrtime(initialOffset);
@@ -466,7 +531,8 @@ events.push(['имя метода', start, end]);</code>
     <div>
         <h2>1b. Оборачиваем код в замеры времени в&nbsp;браузере</h2>
         <pre>
-<code class="hljs javascript">// точка отсчёта - начало навигации
+<code class="hljs javascript">const events = [];
+// точка отсчёта - начало навигации
 let start = performance.now();
 // код
 let end = performance.now();
@@ -487,18 +553,27 @@ events.push(['имя метода', start, end]);</code>
     </div>
 </section>
 
-<section class="slide">
+<section class="slide big-image">
     <div>
-        <h2>3. Рисуем Timeline в Google Charts</h2>
-        <p>
-            <a href="google-charts-timeline/timeline.html?file=timeline.json">Пример</a>
-        </p>
+        <h2>3. Берём Timeline из Google Charts</h2>
         <p>
             <a href="https://developers.google.com/chart/interactive/docs/gallery/timeline">Документация</a>
         </p>
+        <figure>
+            <img src="pictures/google-charts-timeline-docs.png" alt="Google Charts Timeline">
+        </figure>
+    </div>
+</section>
+
+<section class="slide big-image">
+    <div>
+        <h2>4. Рисуем свои данные</h2>
         <p>
-            TODO вставить скриншот, видео, скриншот доки Google Charts
+            <a href="google-charts-timeline/timeline.html?file=timeline.json">Демо</a>
         </p>
+        <figure>
+            <img src="pictures/google-charts-timeline-demo.png" alt="Google Charts Timeline demo">
+        </figure>
     </div>
 </section>
 
@@ -513,7 +588,8 @@ events.push(['имя метода', start, end]);</code>
     <div>
         <h2>1. Собираем данные в формате Trace Event</h2>
         <pre>
-<code class="hljs javascript">traceEvents.push({
+<code class="hljs javascript">const traceEvents = [];
+traceEvents.push({
     pid: 1, tid: 1, ph: 'X', name: 'имя метода',
     ts: startMicroseconds, dur: durationMicroseconds,
     args: { // любая детальная информация
@@ -551,11 +627,9 @@ events.push(['имя метода', start, end]);</code>
 </section>
 
 <section class="slide">
-    <!--<div>-->
     <figure>
         <img src="pictures/chrome-tracing-nodejs.png" alt="chrome://tracing" class="cover">
     </figure>
-    <!--</div>-->
 </section>
 
 <section class="slide">
@@ -601,8 +675,7 @@ events.push(['имя метода', start, end]);</code>
                 Анализировать картинки легче, чем числа
             </li>
             <li class="next">
-                В инспекторе для Chrome и Node.js можно визуализировать результаты профилирования с учётом специфики
-                любого фреймворка
+                В инспекторе для Chrome и Node.js можно визуализировать результаты профилирования любого фреймворка
             </li>
             <li class="next">
                 Если этого недостаточно &mdash; есть экспорт JSON и универсальные инструменты наподобие Google Charts и
@@ -636,7 +709,20 @@ events.push(['имя метода', start, end]);</code>
 <script src="node_modules/shower-core/shower.min.js"></script>
 <script src="src/highlight/highlight.pack.js"></script>
 <script>
+    console.timeStamp('Начало inline JS');
+
+    console.time('add keywords');
+    (function() {
+        var js = hljs.getLanguage('javascript');
+        if (js && js.k && (typeof js.k.built_in === 'string')) {
+            js.k.built_in += ' performance process';
+        }
+    })();
+    console.timeEnd('add keywords');
+
+    console.time('init hljs');
     hljs.initHighlightingOnLoad();
+    console.timeEnd('init hljs');
 </script>
 </body>
 </html>
