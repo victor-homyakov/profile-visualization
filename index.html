@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="src/styles/yandex2/styles/screen-16x9.css">
-    <link rel="stylesheet" href="src/highlight/styles/mono-blue.css">
+    <link rel="stylesheet" href="src/highlight/styles/github.css">
     <style>
         .shower {
             --slide-ratio: calc(16 / 9);
@@ -18,12 +18,6 @@
         .slide ol > li strong,
         .slide ul > li strong {
             display: inline;
-        }
-
-        .danger {
-            background: red;
-            color: white;
-            padding: 5px;
         }
 
         .slide .columns-2 ol {
@@ -273,7 +267,9 @@
     <div>
         <h2>Профилирование компонентов React</h2>
         <ul>
-            <li class="next">Development-сборка React DOM (react-dom.development.js)</li>
+            <li class="next">
+                Development-сборка React DOM (react-dom.development.js)
+            </li>
             <li class="next">
                 <a href="https://reactjs.org/docs/optimizing-performance.html#profiling-components-with-the-chrome-performance-tab">
                     Статья на reactjs.org о профилировании компонентов React в Chrome
@@ -332,7 +328,7 @@
         <ul>
             <li>
                 <code>console.*</code> пишет результат в консоль &mdash; это может замедлить ваш код, если консоль
-                открыта
+                открыта TODO пруф - ссылку на доки Google
             </li>
             <li class="next">
                 <code>performance.*</code> пишет в performance entries &mdash; надо чистить, чтобы он не съел всю
@@ -432,12 +428,12 @@
         <ul>
             <li>
                 <a href="https://chromedevtools.github.io/devtools-protocol/1-2/Profiler#type-Profile">
-                    Описание формата Profile на chromedevtools.github.io
+                    Описание формата Profile
                 </a>
             </li>
             <li>
                 <a href="https://chromium.googlesource.com/v8/v8/+/master/src/inspector/js_protocol.json#1421">
-                    Исходники V8 Inspector на chromium.googlesource.com
+                    Исходники V8 Inspector
                 </a>
             </li>
         </ul>
@@ -501,7 +497,7 @@ events.push(['имя метода', start, end]);</code>
             <a href="https://developers.google.com/chart/interactive/docs/gallery/timeline">Документация</a>
         </p>
         <p>
-            TODO вставить скриншот
+            TODO вставить скриншот, видео, скриншот доки Google Charts
         </p>
     </div>
 </section>
@@ -547,9 +543,7 @@ events.push(['имя метода', start, end]);</code>
 <section class="slide">
     <div>
         <h2>3. Открываем в chrome://tracing</h2>
-        <p>
-            Другие варианты названия: browser://tracing, about:tracing
-        </p>
+        <p>Другие варианты названия: browser://tracing, about:tracing</p>
         <figure>
             <img src="pictures/chrome-tracing.png" alt="chrome://tracing" class="cover">
         </figure>
@@ -607,13 +601,12 @@ events.push(['имя метода', start, end]);</code>
                 Анализировать картинки легче, чем числа
             </li>
             <li class="next">
-                В стандартных вкладках Performance и Profiler инспектора для Chrome и Node.js можно визуализировать
-                результаты профилирования с учётом специфики любого фреймворка
+                В инспекторе для Chrome и Node.js можно визуализировать результаты профилирования с учётом специфики
+                любого фреймворка
             </li>
             <li class="next">
-                Если этого недостаточно - есть экспорт JSON, описание форматов, можно написать свои
-                преобразования и конвертеры и делать импорт в любой доступный универсальный инструмент
-                наподобие Google Charts и chrome://tracing
+                Если этого недостаточно &mdash; есть экспорт JSON и универсальные инструменты наподобие Google Charts и
+                chrome://tracing
             </li>
         </ul>
     </div>
