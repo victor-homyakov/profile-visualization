@@ -39,13 +39,6 @@
             background: none;
         }
 
-        /*
-        .big-image {
-            max-width: 100%;
-            max-height: 100%;
-        }
-        */
-
         .slide.big-image > div {
             bottom: 0;
             overflow: hidden;
@@ -54,6 +47,10 @@
         .slide.big-image img {
             max-width: 100%;
             max-height: 100%;
+        }
+
+        pre.margin-30 {
+            margin: 30px 0;
         }
     </style>
 </head>
@@ -290,35 +287,40 @@
     </div>
 </section>
 
-<section class="slide">
+<section class="slide big-image">
     <div>
-        <ul>
-            <li>
-                <code>console.timeStamp(label);</code>
-            </li>
-            <li class="next">
-                <code>console.time(label); console.timeEnd(label);</code>
-            </li>
-            <li class="next">
-                <code>performance.mark(markName);</code>
-            </li>
-            <li class="next">
-                <code>performance.measure(label, markName);</code>
-            </li>
-            <li class="next">
-                <a href="https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API">
-                    Статья про User Timing API на MDN
-                </a>
-            </li>
-        </ul>
+        <pre class="margin-30"><code class="hljs javascript">console.timeStamp('Начало inline JS');</code></pre>
+        <figure>
+            <img src="pictures/performance-console-timestamp-highlighted.png" alt="console.timeStamp">
+        </figure>
     </div>
 </section>
 
-<section class="slide">
+<section class="slide big-image">
     <div>
-        <p>
-            TODO добавить скриншоты с console.* и performance.*
-        </p>
+        <p>На одной шкале с DOMContentLoaded и load</p>
+        <figure>
+            <img src="pictures/performance-dcl-highlighted.png" alt="DOMContentLoaded">
+        </figure>
+    </div>
+</section>
+
+<section class="slide big-image">
+    <div>
+        <pre class="margin-30"><code
+            class="hljs javascript">console.time(label); /* код */ console.timeEnd(label);</code></pre>
+        <figure>
+            <img src="pictures/performance-console-time-highlighted.png" alt="console.time">
+        </figure>
+    </div>
+</section>
+
+<section class="slide big-image">
+    <div>
+        <pre class="margin-30"><code class="hljs javascript">performance.mark(markName); /* код */ performance.measure(label, markName);</code></pre>
+        <figure>
+            <img src="pictures/performance-measure-highlighted.png" alt="performance.measure">
+        </figure>
     </div>
 </section>
 
@@ -331,10 +333,28 @@
                 открыта TODO пруф - ссылку на доки Google
             </li>
             <li class="next">
-                <code>performance.*</code> пишет в performance entries &mdash; надо чистить, чтобы он не съел всю
-                память:<br>
+                <code>performance.*</code> пишет в performance entries &mdash; надо чистить,<br>
+                чтобы не съел всю память:<br>
                 <code>performance.clearMarks(markName);</code>
                 <code>performance.clearMeasures(label);</code>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<section class="slide">
+    <div>
+        <h2>Материалы</h2>
+        <ul>
+            <li>
+                <a href="https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API">
+                    User Timing API
+                </a>
+            </li>
+            <li>
+                <a href="https://developers.google.com/web/tools/chrome-devtools/console/api">
+                    Chrome Console API Reference
+                </a>
             </li>
         </ul>
     </div>
@@ -551,11 +571,9 @@ events.push(['имя метода', start, end]);</code>
 </section>
 
 <section class="slide">
-    <!--<div>-->
     <figure>
         <img src="pictures/chrome-tracing-nodejs.png" alt="chrome://tracing" class="cover">
     </figure>
-    <!--</div>-->
 </section>
 
 <section class="slide">
@@ -636,7 +654,10 @@ events.push(['имя метода', start, end]);</code>
 <script src="shower/shower.min.js"></script>
 <script src="src/highlight/highlight.pack.js"></script>
 <script>
+    console.timeStamp('Начало inline JS');
+    console.time('init');
     hljs.initHighlightingOnLoad();
+    console.timeEnd('init');
 </script>
 </body>
 </html>
