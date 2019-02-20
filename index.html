@@ -49,7 +49,8 @@
             overflow: hidden;
         }
 
-        .slide.big-image img {
+        .slide.big-image img,
+        .slide.big-image video {
             max-width: 100%;
             max-height: 100%;
         }
@@ -451,10 +452,10 @@ console.profileEnd();</code>
     </div>
 </section>
 
-<section class="slide">
+<section class="slide big-image">
     <div>
-        <h2>2. Выполняем; сохраняем профайлы в JSON</h2>
-        TODO скриншот экспорта
+        <h2>2. Записываем и сохраняем профайлы</h2>
+        <video src="pictures/cpuprofile-create-and-export-small.mp4" autoplay loop muted style="width: 100%"></video>
     </div>
 </section>
 
@@ -465,23 +466,17 @@ console.profileEnd();</code>
             <a href="https://github.com/victor-homyakov/merge-cpuprofiles">github.com/victor-homyakov/merge-cpuprofiles</a>
         </p>
         <figure>
-            <img src="pictures/github-merge-cpuprofiles-repo.png" alt="merge-cpuprofiles repository on GitHub"
-                class="cover-">
+            <img src="pictures/github-merge-cpuprofiles-repo.png" alt="merge-cpuprofiles repository on GitHub">
         </figure>
     </div>
 </section>
 
-<section class="slide">
+<section class="slide big-image">
     <div>
-        <h2>4. Импортируем объединённый профайл</h2>
-        TODO скриншот импорта
-    </div>
-</section>
-
-<section class="slide">
-    <div>
-        <h2>5. Смотрим, что получилось</h2>
-        TODO скриншот
+        <h2>4. Анализируем объединённый профайл</h2>
+        <figure>
+            <img src="pictures/cpuprofile-merged.png" alt="Merged profiles">
+        </figure>
     </div>
 </section>
 
@@ -519,7 +514,7 @@ console.profileEnd();</code>
     <div>
         <h2>1a. Оборачиваем код в замеры времени в&nbsp;Node.js</h2>
         <pre>
-<code class="hljs javascript">// initialOffset - точка отсчёта
+<code class="hljs javascript">// точка отсчёта - загрузка модуля
 const initialOffset = process.hrtime(), events = [];
 // время, прошедшее с момента initialOffset
 let start = process.hrtime(initialOffset);
@@ -534,7 +529,8 @@ events.push(['имя метода', start, end]);</code>
     <div>
         <h2>1b. Оборачиваем код в замеры времени в&nbsp;браузере</h2>
         <pre>
-<code class="hljs javascript">// точка отсчёта - начало навигации
+<code class="hljs javascript">const events = [];
+// точка отсчёта - начало навигации
 let start = performance.now();
 // код
 let end = performance.now();
@@ -590,7 +586,8 @@ events.push(['имя метода', start, end]);</code>
     <div>
         <h2>1. Собираем данные в формате Trace Event</h2>
         <pre>
-<code class="hljs javascript">traceEvents.push({
+<code class="hljs javascript">const traceEvents = [];
+traceEvents.push({
     pid: 1, tid: 1, ph: 'X', name: 'имя метода',
     ts: startMicroseconds, dur: durationMicroseconds,
     args: { // любая детальная информация
@@ -676,8 +673,7 @@ events.push(['имя метода', start, end]);</code>
                 Анализировать картинки легче, чем числа
             </li>
             <li class="next">
-                В инспекторе для Chrome и Node.js можно визуализировать результаты профилирования с учётом специфики
-                любого фреймворка
+                В инспекторе для Chrome и Node.js можно визуализировать результаты профилирования любого фреймворка
             </li>
             <li class="next">
                 Если этого недостаточно &mdash; есть экспорт JSON и универсальные инструменты наподобие Google Charts и
@@ -712,9 +708,19 @@ events.push(['имя метода', start, end]);</code>
 <script src="src/highlight/highlight.pack.js"></script>
 <script>
     console.timeStamp('Начало inline JS');
-    console.time('init');
+
+    console.time('add keywords');
+    (function() {
+        var js = hljs.getLanguage('javascript');
+        if (js && js.k && (typeof js.k.built_in === 'string')) {
+            js.k.built_in += ' performance process';
+        }
+    })();
+    console.timeEnd('add keywords');
+
+    console.time('init hljs');
     hljs.initHighlightingOnLoad();
-    console.timeEnd('init');
+    console.timeEnd('init hljs');
 </script>
 </body>
 </html>
