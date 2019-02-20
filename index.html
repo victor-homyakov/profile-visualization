@@ -434,37 +434,55 @@
 
 <section class="slide">
     <div>
-        TODO разбить на отдельные слайды со скриншотами
         <p>
             Иногда надо собрать статистику о многократном выполнении конкретного метода, при этом остальной код "шумит"
         </p>
-        <ol>
-            <li class="next">
-                Оборачиваем код в<br>
-                <code>console.profile() ... console.profileEnd()</code>
-            </li>
-            <li class="next">
-                Экспортируем профайлы (сохраняем JSON на диск)
-            </li>
-            <li class="next">
-                Мы умеем в JSON
-                <a href="https://github.com/victor-homyakov/merge-cpuprofiles">github.com/victor-homyakov/merge-cpuprofiles</a>
-            </li>
-            <li class="next">
-                Импортируем получившийся объединённый профайл
-            </li>
-            <li class="next">
-                Смотрим, что получилось
-            </li>
-        </ol>
     </div>
 </section>
 
 <section class="slide">
-    <figure>
-        <img src="pictures/github-merge-cpuprofiles-repo.png" alt="merge-cpuprofiles repository on GitHub"
-            class="cover">
-    </figure>
+    <div>
+        <h2>1. Оборачиваем код</h2>
+        <pre>
+<code class="hljs javascript">console.profile();
+// код
+console.profileEnd();</code>
+        </pre>
+    </div>
+</section>
+
+<section class="slide">
+    <div>
+        <h2>2. Выполняем; сохраняем профайлы в JSON</h2>
+        TODO скриншот экспорта
+    </div>
+</section>
+
+<section class="slide big-image">
+    <div>
+        <h2>3. Мержим профайлы</h2>
+        <p>
+            <a href="https://github.com/victor-homyakov/merge-cpuprofiles">github.com/victor-homyakov/merge-cpuprofiles</a>
+        </p>
+        <figure>
+            <img src="pictures/github-merge-cpuprofiles-repo.png" alt="merge-cpuprofiles repository on GitHub"
+                class="cover-">
+        </figure>
+    </div>
+</section>
+
+<section class="slide">
+    <div>
+        <h2>4. Импортируем объединённый профайл</h2>
+        TODO скриншот импорта
+    </div>
+</section>
+
+<section class="slide">
+    <div>
+        <h2>5. Смотрим, что получилось</h2>
+        TODO скриншот
+    </div>
 </section>
 
 <section class="slide">
