@@ -20,6 +20,11 @@
             display: inline;
         }
 
+        .slide li table th,
+        .slide li table td {
+            text-indent: 0 !important;
+        }
+
         .slide .columns-2 ol {
             float: left;
             margin-left: 70px;
@@ -329,12 +334,32 @@
         <h2>Несколько особенностей</h2>
         <ul>
             <li>
-                <code>console.*</code> пишет результат в консоль &mdash; это может замедлить ваш код, если консоль
-                открыта TODO пруф - ссылку на доки Google
+                <code>console.timeEnd()</code> пишет результат в консоль &mdash; это может замедлить код:
+
+                <table>
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>консоль закрыта</th>
+                        <th>консоль открыта</th>
+                    </tr>
+                    </thead>
+                    <tr>
+                        <td><code>console.timeStamp</code></td>
+                        <td>2.8 Mops/s 0.35 μs</td>
+                        <td>2.8 Mops/s 0.35 μs</td>
+                    </tr>
+                    <tr>
+                        <td><code>console.time..timeEnd</code></td>
+                        <td>40 Kops/s 25 μs</td>
+                        <td style="background-color: #ff000036">150-200 ops/s 5-7 ms</td>
+                    </tr>
+                </table>
+                <a href="https://jsperf.com/console-timestamp">https://jsperf.com/console-timestamp</a>
             </li>
             <li class="next">
                 <code>performance.*</code> пишет в performance entries &mdash; надо чистить,<br>
-                чтобы не съел всю память:<br>
+                чтобы не ел память:<br>
                 <code>performance.clearMarks(markName);</code>
                 <code>performance.clearMeasures(label);</code>
             </li>
@@ -352,7 +377,7 @@
                 </a>
             </li>
             <li>
-                <a href="https://developers.google.com/web/tools/chrome-devtools/console/api">
+                <a href="https://developers.google.com/web/tools/chrome-devtools/console/api#time">
                     Chrome Console API Reference
                 </a>
             </li>
@@ -400,7 +425,7 @@
     </div>
 </section>
 
-<!-- профилирование раздельных участков кода -->
+<!-- профилирование участков кода -->
 <section class="slide">
     <div>
         <h2 class="shout shrink">Chrome: изучение участка кода</h2>
@@ -409,7 +434,7 @@
 
 <section class="slide">
     <div>
-        TODO разбить на отдельные слайды
+        TODO разбить на отдельные слайды со скриншотами
         <p>
             Иногда надо собрать статистику о многократном выполнении конкретного метода, при этом остальной код "шумит"
         </p>
@@ -429,7 +454,7 @@
                 Импортируем получившийся объединённый профайл
             </li>
             <li class="next">
-                Смотрим, что получилось (TODO надо скриншоты?)
+                Смотрим, что получилось
             </li>
         </ol>
     </div>
@@ -454,6 +479,11 @@
             <li>
                 <a href="https://chromium.googlesource.com/v8/v8/+/master/src/inspector/js_protocol.json#1421">
                     Исходники V8 Inspector
+                </a>
+            </li>
+            <li>
+                <a href="https://developers.google.com/web/tools/chrome-devtools/console/api#profile">
+                    Chrome Console API Reference
                 </a>
             </li>
         </ul>
@@ -507,18 +537,27 @@ events.push(['имя метода', start, end]);</code>
     </div>
 </section>
 
-<section class="slide">
+<section class="slide big-image">
     <div>
-        <h2>3. Рисуем Timeline в Google Charts</h2>
-        <p>
-            <a href="google-charts-timeline/timeline.html?file=timeline.json">Пример</a>
-        </p>
+        <h2>3. Берём Timeline из Google Charts</h2>
         <p>
             <a href="https://developers.google.com/chart/interactive/docs/gallery/timeline">Документация</a>
         </p>
+        <figure>
+            <img src="pictures/google-charts-timeline-docs.png" alt="Google Charts Timeline">
+        </figure>
+    </div>
+</section>
+
+<section class="slide big-image">
+    <div>
+        <h2>4. Рисуем свои данные</h2>
         <p>
-            TODO вставить скриншот, видео, скриншот доки Google Charts
+            <a href="google-charts-timeline/timeline.html?file=timeline.json">Демо</a>
         </p>
+        <figure>
+            <img src="pictures/google-charts-timeline-demo.png" alt="Google Charts Timeline demo">
+        </figure>
     </div>
 </section>
 
